@@ -1,4 +1,5 @@
 public class Level {
+	private static final String LEVEL_1_TEXT = "I've been waiting here for quite a while.";
 	private int levelNum;
 	private String levelText;
 	private String buttonLabel;
@@ -10,10 +11,15 @@ public class Level {
 	}
 
 	public void levelCheck() {
-		if (getLevelNum() == 1) {
-			setLevelText("I've been waiting here for quite a while." + "\n");
-			setButtonLabel("Continue");
+		
+		switch (getLevelNum()){
+			case 1: setLevelText(LEVEL_1_TEXT + "\n");
+					setButtonLabel("Continue");
 		}
+//		if (getLevelNum() == 1) {
+//			setLevelText("I've been waiting here for quite a while." + "\n");
+//			setButtonLabel("Continue");
+//		}
 		if (getLevelNum() == 2) {
 			setLevelText("I look up at the dark, slow-moving coulds and become" + "\n" +
 					"restless." + "\n");

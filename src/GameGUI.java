@@ -39,10 +39,12 @@ public class GameGUI implements ActionListener{
 		frame.getContentPane().add(BorderLayout.SOUTH, button);
 		frame.setSize(380,400);
 		frame.setResizable(false);
+		frame.setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent ev) {
 		
+		stage.levelCheck();
 		
 		if (stage.getLevelNum() == 15) {
 //			text = new JTextArea(20,30);
@@ -79,10 +81,9 @@ public class GameGUI implements ActionListener{
 		
 		
 		refresh();
-		stage.levelCheck();
 	}
 	
-	@SuppressWarnings("deprecation")
+//	@SuppressWarnings("deprecation")
 	public void refresh() {
 		String buttonLabel = stage.getButtonLabel();
 		button.setLabel(buttonLabel);
