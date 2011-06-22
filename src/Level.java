@@ -48,7 +48,7 @@ public class Level {
 	private static final String LEVEL_13_TEXT_B = "GUI implementation instead of story development.";
 	private static final String LEVEL_13_BUTTON = "Continue";
 
-	private static final String LEVEL_14_TEXT_A = "Capa: Sounds good." + "\n";
+	private static final String LEVEL_14_TEXT_A = "Capa: Sounds good.";
 	private static final String LEVEL_14_BUTTON = "Drive away";
 	
 	private static final String LEVEL_15_TEXT_A = "You find yourself on the side of a skyscraper looking at";
@@ -61,6 +61,14 @@ public class Level {
 	private static final String LEVEL_16_TEXT_A = "The giant sealed door silently slides open. After you";
 	private static final String LEVEL_16_TEXT_B = "slip inside, it slowly seals shut behind you.";
 	private static final String LEVEL_16_BUTTON = "Continue";
+	
+	private static final String LEVEL_17_TEXT_A = "A robot stops you. He wants to make sure you can do math.";
+	private static final String LEVEL_17_TEXT_B = "Computer: What is 5 x 5?";
+	private static final String LEVEL_17_BUTTON = "Continue";
+	
+	private static final String LEVEL_18_TEXT_A = "A robot stops you. He wants to make sure you can do math.";
+	private static final String LEVEL_18_TEXT_B = "Computer: What is 10 x 10?";
+	private static final String LEVEL_18_BUTTON = "Continue";
 		
 	public Level (int levelNum, String levelText, String buttonLabel) {
 		this.levelNum = levelNum;
@@ -130,6 +138,14 @@ public class Level {
 			case 16: setLevelText(LEVEL_16_TEXT_A + "\n" +
 					LEVEL_16_TEXT_B + "\n\n");
 					setButtonLabel(LEVEL_16_BUTTON);
+					break;
+			case 17: setLevelText(LEVEL_17_TEXT_A + "\n" +
+					LEVEL_17_TEXT_B + "\n\n");
+					setButtonLabel(LEVEL_17_BUTTON);
+					break;
+			case 18: setLevelText(LEVEL_18_TEXT_A + "\n" +
+					LEVEL_18_TEXT_B + "\n\n");
+					setButtonLabel(LEVEL_18_BUTTON);
 					break;
 		}
 	}

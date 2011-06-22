@@ -10,20 +10,25 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
 public class GameGUI implements ActionListener{
-
+	private static final String PASSWORD = "2965";
 	JTextArea text;
 	JButton button;
 	JPasswordField passwordField;
 	JLabel label;
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
+	JTextField textField;
+
 	
 	Level stage = new Level(1, "", "");
 		
 	public void initialize(){
+		
+		
 		text = new JTextArea(20,30);
 		text.setLineWrap(true);
 		text.setEditable(false);
@@ -41,13 +46,17 @@ public class GameGUI implements ActionListener{
 		frame.setSize(380,400);
 		frame.setResizable(false);
 		frame.setVisible(true);
+		
+		textField = new JTextField();
 	}
 	
 	// password listener class... why does it still want me to implement ActionListener?
 	class AL implements ActionListener{ 
+		
+
 		public void actionPerformed(ActionEvent e) {
 			if (stage.getLevelNum() == 15) {
-				String password = "2965";
+				String password = PASSWORD;
 				JPasswordField input = (JPasswordField) e.getSource();
 				char[] passyArray = input.getPassword();
 				String passy = new String(passyArray);
@@ -55,12 +64,32 @@ public class GameGUI implements ActionListener{
 				if (passy.equals(password)){
 					JOptionPane.showMessageDialog(null, "Computer: Access granted");
 					frame.getContentPane().remove(passwordField);
-					frame.getContentPane().add(BorderLayout.SOUTH, button);
+					addButton();
 					stage.levelCheck();
 					refresh();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Computer: Access denied");
+				}
+			}
+		}
+	}
+	
+	class TextFieldListener implements ActionListener{ 
+		
+		public void actionPerformed(ActionEvent etf) {
+			if (stage.getLevelNum() == 17) {
+				JTextField input = (JTextField) etf.getSource();
+				String text = input.getText();
+			
+				if (text.equals("25")){
+					JOptionPane.showMessageDialog(null, "Computer: Correct");
+					stage.levelCheck();
+					refresh();
+					
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Computer: Incorrect");
 				}
 			}
 		}
@@ -72,22 +101,44 @@ public class GameGUI implements ActionListener{
 			refresh();
 		}
 		if (stage.getLevelNum() == 15) {
-			frame.getContentPane().remove(button);
+			removeButton();
 			passwordField = new JPasswordField(4);
 			frame.getContentPane().add(BorderLayout.SOUTH, passwordField);
 			passwordField.addActionListener(new AL());
+			refresh();
 		}
-		if (stage.getLevelNum() > 15) {
-			
+		if (stage.getLevelNum() == 16) {
+
 //			button = new JButton("Start");
 //			button.addActionListener(this);
-			
+			System.out.println("Test1");
 			stage.levelCheck();
 			refresh();
+
+		}
+		if (stage.getLevelNum() == 17) {
+			System.out.println("Test2");
+			
+			//removeButton();
+			addTextField();
+			textField.addActionListener(new TextFieldListener());
+			
 		}
 	}
 		
+	public void removeButton(){
+		//button.setVisible(false);
+		frame.getContentPane().remove(button);
+	}
 	
+	public void addTextField(){
+		frame.getContentPane().add(BorderLayout.SOUTH, textField);
+	}
+	
+	public void addButton(){
+		button = new JButton("Start");
+		button.addActionListener(this);
+	}
 	
 	@SuppressWarnings("deprecation")
 	public void refresh() {
@@ -96,11 +147,4 @@ public class GameGUI implements ActionListener{
 		text.append(stage.getLevelText());
 	}		
 
-	
-
-
-//	public void actionPerformed(ActionEvent e) {
-
-//	}
-	
 }
